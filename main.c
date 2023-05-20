@@ -10,7 +10,7 @@
  * Return: execution status
  */
 
-int execute(char *search, char **arr, char **env, char *sname, char *pname)
+int execute(char *search, char **arr, char **env)
 
 {
 	int pid, status;
@@ -25,7 +25,6 @@ int execute(char *search, char **arr, char **env, char *sname, char *pname)
 	{
 		if ((execve(search, arr, env)) == -1)
 		{
-			printem(sname, pname);
 			exit(1);
 		}
 		exit(0);
@@ -50,20 +49,20 @@ int main(int argc, char **argv, char **env)
 {
 	char **arr, **mpath, *search;
 	int p_case = 0, exit_stat = 0;
+	int runstat = 0;
 
 	mpath = main_path();
 	(void)argc, (void)argv;
 	while (1)
 	{
-		arr = getntok(mpath);
+		arr = getntok(mpath, exit_stat);
+		runstat++;
 		if (arr[0] == NULL)
 		{
 			free_arr(arr);
-			if (!(isatty(STDIN_FILENO)))
-				break;
 			continue;
 		}
-		ourexit(arr[0], mpath, arr, arr[1]);
+		ourexit(arr[0], mpath, arr, arr[1], exit_stat);
 		if (__strcmp(arr[0], "cd") == 0)
 		{
 			exit_stat = cd(arr);
@@ -73,18 +72,16 @@ int main(int argc, char **argv, char **env)
 		if (search == NULL)
 		{
 			exit_stat = 1;
-			printem(argv[0], arr[0]);
+			printem(argv[0], runstat, arr[0]);
 			free_arr(arr);
 			continue;
 		}
-		execute(search, arr, env, argv[0], arr[0]);
+		exit_stat = execute(search, arr, env);
 		if (p_case == 1)
 			free(search);
 		p_case = 0;
 		free_arr(arr);
 	}
-	free_arr(arr);
-	free_arr(mpath);
 	return (exit_stat);
 }
 

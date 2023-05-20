@@ -7,7 +7,7 @@
  * Return: array of input strings
  */
 
-char **getntok(char **mpath)
+char **getntok(char **mpath, int exit_stat)
 {
 	char *lineptr = NULL, **tokens, *token;
 	size_t n = 0;
@@ -17,7 +17,7 @@ char **getntok(char **mpath)
 	{
 		free(lineptr);
 		free_arr(mpath);
-		exit(EXIT_FAILURE);
+		exit(exit_stat);
 	}
 	for (i = 0; lineptr[i]; i++)
 	{
@@ -31,7 +31,7 @@ char **getntok(char **mpath)
 		perror("malloc");
 		return (NULL);
 	}
-	token = _strtok(lineptr, " ");
+	token = strtok(lineptr, " ");
 	i = 0;
 	while (token != NULL)
 	{
@@ -42,7 +42,7 @@ char **getntok(char **mpath)
 			return (NULL);
 		}
 		_strcpy(tokens[i++], token);
-		token = _strtok(NULL, " ");
+		token = strtok(NULL, " ");
 	}
 	tokens[i] = NULL;
 	/*Note: free memory in array in main function once usage complete*/

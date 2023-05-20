@@ -9,7 +9,7 @@
  *
  * Return: nothing
  */
-void ourexit(char *exit1, char **mpath, char **arr, char *args)
+void ourexit(char *exit1, char **mpath, char **arr, char *args, int exit_stat)
 {
 	char *exit2 = "exit";
 	int status;
@@ -29,7 +29,7 @@ void ourexit(char *exit1, char **mpath, char **arr, char *args)
 	{
 		free_arr(arr);
 		free_arr(mpath);
-		exit(0);
+		exit(exit_stat);
 	}
 	else if ((count == 4) & (args != NULL))
 	{

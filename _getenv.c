@@ -50,7 +50,7 @@ char **paths(void)
 		return (NULL);
 	}
 
-	token = _strtok(pathvr, ":");
+	token = strtok(pathvr, ":");
 	while (token != NULL)
 	{
 		paths[i] = malloc(sizeof(char) * (_strlen(token) + 1));
@@ -61,7 +61,7 @@ char **paths(void)
 		}
 
 		_strcpy(paths[i++], token);
-		token = _strtok(NULL, ":");
+		token = strtok(NULL, ":");
 	}
 	paths[i] = NULL;
 
