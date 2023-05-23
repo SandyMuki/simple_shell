@@ -36,6 +36,13 @@ int execute(char *search, char **arr, char **env)
 
 	return (status);
 }
+/**
+ * signal_handler - handles SIGINT interrupt
+ * @signum: interrupt integer
+ *
+ * Return: nothing
+ */
+
 void signal_handler(int signum)
 {
 	(void)signum;/*signal hanlder function*/
