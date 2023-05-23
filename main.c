@@ -36,6 +36,11 @@ int execute(char *search, char **arr, char **env)
 
 	return (status);
 }
+void signal_handler(int signum)
+{
+	(void)signum;/*signal hanlder function*/
+	write(1, "\n$ ", 3);
+}
 /**
  * main - main function to couple shell functions
  * @argc: number of input parameters
@@ -53,6 +58,7 @@ int main(int argc, char **argv, char **env)
 
 	mpath = main_path();
 	(void)argc, (void)argv;
+	signal(SIGINT, signal_handler);
 	while (1)
 	{
 		arr = getntok(mpath, exit_stat);
@@ -66,6 +72,7 @@ int main(int argc, char **argv, char **env)
 		if (__strcmp(arr[0], "cd") == 0)
 		{
 			exit_stat = cd(arr);
+			free_arr(arr);
 			continue;
 		}
 		search = searchexec(mpath, arr[0], &p_case);

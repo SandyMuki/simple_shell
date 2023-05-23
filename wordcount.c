@@ -13,6 +13,10 @@ int wordcount(char *str)
 	int len = _strlen(str);
 	int i = 0;
 
+	/* check if string is empty*/
+	if (__strcmp(str, "") == 0)
+		return (0);
+
 	/* skip leading spaces and tabs */
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 		i++;

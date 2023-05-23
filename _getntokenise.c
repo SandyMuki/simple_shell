@@ -13,6 +13,8 @@ char **getntok(char **mpath, int exit_stat)
 	size_t n = 0;
 	int i = 0;
 
+	if (isatty(STDIN_FILENO))
+		write(1, "$ ", 2);
 	if ((getline(&lineptr, &n, stdin)) == -1)
 	{
 		free(lineptr);
@@ -33,7 +35,7 @@ char **getntok(char **mpath, int exit_stat)
 	}
 	token = strtok(lineptr, " ");
 	i = 0;
-	while (token != NULL)
+	while ((token != NULL) && !(__strcmp(token, "#") == 0))
 	{
 		tokens[i] = malloc(sizeof(char) * (_strlen(token) + 1));
 		if (tokens[i] == NULL)
@@ -45,7 +47,7 @@ char **getntok(char **mpath, int exit_stat)
 		token = strtok(NULL, " ");
 	}
 	tokens[i] = NULL;
-	/*Note: free memory in array in main function once usage complete*/
+
 	free(lineptr);
 	return (tokens);
 }
