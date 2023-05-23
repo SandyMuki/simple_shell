@@ -3,6 +3,7 @@
 /**
  * getntok - get string and tokenise to an array of strings
  * @mpath: pointer to array of mpath to clean
+ * @exit_stat: exit status of previous program
  *
  * Return: array of input strings
  */
@@ -26,7 +27,6 @@ char **getntok(char **mpath, int exit_stat)
 		if (lineptr[i] == '\n')
 			lineptr[i] = '\0';
 	}
-
 	tokens = malloc(sizeof(char *) * (wordcount(lineptr) + 1));
 	if (tokens == NULL)
 	{

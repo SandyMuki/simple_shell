@@ -6,6 +6,7 @@
  * @mpath: path array to free memory
  * @arr: input array to free
  * @args: exit parameter
+ * @exit_stat: exit status of previous program
  *
  * Return: nothing
  */

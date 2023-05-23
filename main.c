@@ -4,8 +4,6 @@
  * @search: location in PATH variable
  * @arr: input parameters
  * @env: environment variables
- * @sname: shell name
- * @pname: program name
  *
  * Return: execution status
  */
