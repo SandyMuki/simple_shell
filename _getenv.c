@@ -28,16 +28,19 @@ char *_getenv()
  *
  * Return: an array of path location
  */
-
+#define PATHCP 2024
 char **paths(void)
 {
 	char *pathvr, **paths, *token;
+	char pathcopy[PATHCP];
 	int count = 0, i;
 
 	pathvr = _getenv();
-	for (i = 0; pathvr[i]; i++)
+	/*copy PATH variables to fixed size array of chars*/
+	_strcpy(pathcopy, pathvr);
+	for (i = 0; pathcopy[i]; i++)
 	{
-		if (pathvr[i] == ':')
+		if (pathcopy[i] == ':')
 			count += 1;
 	}
 	count += 1;
@@ -50,7 +53,7 @@ char **paths(void)
 		return (NULL);
 	}
 
-	token = strtok(pathvr, ":");
+	token = strtok(pathcopy, ":");
 	while (token != NULL)
 	{
 		paths[i] = malloc(sizeof(char) * (_strlen(token) + 1));
