@@ -59,7 +59,7 @@ int main(int argc, char **argv, char **env)
 {
 	char **arr, **mpath, *search;
 	int p_case = 0, exit_stat = 0;
-	int runstat = 0;
+	int runstat = 0, inbuilt_ran = 0;
 
 	mpath = main_path();
 	(void)argc, (void)argv;
@@ -74,9 +74,10 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 		ourexit(arr[0], mpath, arr, arr[1], exit_stat);
-		if (__strcmp(arr[0], "cd") == 0)
+		exit_stat = execute_inbuilt(arr, &inbuilt_ran);
+		if (inbuilt_ran == 1)
 		{
-			exit_stat = cd(arr);
+			inbuilt_ran = 0;
 			free_arr(arr);
 			continue;
 		}

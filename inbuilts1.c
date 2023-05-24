@@ -1,27 +1,4 @@
 #include "main.h"
-/**
- * __strcmp - compare two strings
- * @s1: first string
- * @s2: second string
- *
- * Return: nothing
- */
-
-int __strcmp(const char *s1, const char *s2)
-{
-	int i = 0, vl;
-
-	while (s1[i] == s2[i])
-	{
-		if (s1[i] == '\0')
-			return (0);
-		i++;
-	}
-
-	vl = (s1[i] - s2[i]);
-
-	return (vl);
-}
 
 /**
  * cd - change working directory
@@ -65,4 +42,21 @@ int cd(char **arr)
 
 	return (0);
 }
+/**
+ * env - print our current working environment
+ *
+ * Return: exit status of function
+ */
 
+int env(void)
+{
+	int i;
+
+	for (i = 0; environ[i]; i++)
+	{
+		write(1, environ[i], _strlen(environ[i]));
+		write(1, "\n", 1);
+	}
+
+	return (0);
+}

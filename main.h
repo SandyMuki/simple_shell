@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+int env(void);
+int execute_inbuilt(char **arr, int *inbuilt_ran);
 int __strcmp(const char *s1, const char *s2);
 int cd(char **arr);
 char *_strtok(char *str, const char *delimit);

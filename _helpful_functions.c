@@ -63,3 +63,26 @@ char *_strcat(char *dest, char *src)
 
 	return (dest);
 }
+/**
+ * __strcmp - compare two strings
+ * @s1: first string
+ * @s2: second string
+ *
+ * Return: nothing
+ */
+
+int __strcmp(const char *s1, const char *s2)
+{
+	int i = 0, vl;
+
+	while (s1[i] == s2[i])
+	{
+		if (s1[i] == '\0')
+			return (0);
+		i++;
+	}
+
+	vl = (s1[i] - s2[i]);
+
+	return (vl);
+}
