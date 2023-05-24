@@ -18,13 +18,13 @@ int execute_inbuilt(char **arr, int *inbuilt_ran)
 		*inbuilt_ran = 1;
 		return (exit_stat);
 	}
-	/*
+
 	else if (__strcmp(arr[0], "env") == 0)
 	{
 		exit_stat = env();
 		*inbuilt_ran = 1;
 		return (exit_stat);
 	}
-	*/
+
 	return (exit_stat);
 }
