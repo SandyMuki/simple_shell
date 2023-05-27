@@ -29,10 +29,10 @@ void printem(char *shellname, int runstat, char *program)
 		buff[i] = revbuff[len--];
 	buff[i] = '\0';
 
-	write(STDOUT_FILENO, shellname, _strlen(shellname));
-	write(STDOUT_FILENO, ": ", 2);
-	write(STDOUT_FILENO, buff, _strlen(buff));
-	write(STDOUT_FILENO, ": ", 2);
-	write(STDOUT_FILENO, program, _strlen(program));
-	write(STDOUT_FILENO, ": not found\n", 12);
+	write(STDERR_FILENO, shellname, _strlen(shellname));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, buff, _strlen(buff));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, program, _strlen(program));
+	write(STDERR_FILENO, ": not found\n", 12);
 }
